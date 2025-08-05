@@ -1,8 +1,8 @@
 # PDF Redactor
 
-A secure PDF redaction tool that **actually removes** sensitive content instead of just covering it with black boxes. Perfect for legal documents, financial records, and any PDFs containing sensitive information that need to be shared safely.
+A secure PDF redaction tool that permanently removes sensitive content instead of just covering it. Supports text search, regex patterns, OCR for scanned PDFs, and comprehensive metadata sanitization. Perfect for legal documents and confidential files.
 
-## 🔒 What Makes This Different
+## What Makes This Different
 
 - **True Redaction**: Content is permanently removed from the PDF structure, not just visually hidden
 - **Comprehensive Sanitization**: Removes metadata, JavaScript, embedded files, and other potential information leaks
@@ -11,7 +11,7 @@ A secure PDF redaction tool that **actually removes** sensitive content instead 
 - **Verification**: Built-in verification to ensure redaction was successful
 - **No Web Dependencies**: Runs completely offline for maximum security
 
-## 🚀 Quick Start
+## Quick Start
 
 ### Installation
 
@@ -47,7 +47,7 @@ python pdfredact/cli.py input.pdf output.pdf --rects rectangles.json
 python pdfredact/cli.py sanitize input.pdf output.pdf
 ```
 
-## 📋 Features
+## Features
 
 ### Text-Based Redaction
 - **Exact Term Search**: Find and redact specific words or phrases
@@ -77,7 +77,7 @@ python pdfredact/cli.py sanitize input.pdf output.pdf
 - **Detailed Reports**: Generate JSON reports of redaction activities
 - **Impact Analysis**: Preview redaction impact before applying
 
-## 🛠️ Advanced Usage
+## Advanced Usage
 
 ### Rectangle Specification
 
@@ -141,7 +141,7 @@ apply_boxes("input.pdf", "temp.pdf", boxes)
 hard_sanitize("temp.pdf", "output.pdf")
 ```
 
-## 🔧 Command Line Options
+## Command Line Options
 
 ### Main Redaction Command
 
@@ -166,7 +166,7 @@ python pdfredact/cli.py sanitize input.pdf output.pdf [OPTIONS]
 **Options:**
 - `--verbose, -v`: Enable verbose output
 
-## 📁 Project Structure
+## Project Structure
 
 ```
 pdfredact/
@@ -179,7 +179,7 @@ pdfredact/
 └── __init__.py     # Package initialization
 ```
 
-## 🧪 Testing
+## Testing
 
 ### Create Test Files
 
@@ -208,7 +208,7 @@ impact = estimate_redaction_impact("document.pdf", ["SECRET"], [r"\d{3}-\d{2}-\d
 print(f"Would redact {impact['total_matches']} items across {impact['pages_affected']} pages")
 ```
 
-## ⚠️ Important Security Notes
+## Important Security Notes
 
 1. **Test Thoroughly**: Always test redaction on sample documents before processing important files
 2. **Verify Results**: Use the `--verify` flag and manually review output PDFs
@@ -217,7 +217,7 @@ print(f"Would redact {impact['total_matches']} items across {impact['pages_affec
 5. **Physical Security**: Ensure both input and output files are handled securely
 6. **Memory Cleaning**: The tool processes PDFs in memory - ensure your system memory is secure
 
-## 🔍 Verification Methods
+## Verification Methods
 
 The tool provides multiple verification approaches:
 
@@ -226,7 +226,7 @@ The tool provides multiple verification approaches:
 3. **Visual Inspection**: Generate preview PDFs to manually verify redaction areas
 4. **Binary Analysis**: Optional deep inspection of PDF object structure
 
-## 📄 Supported PDF Types
+## Supported PDF Types
 
 - **Text-based PDFs**: Full support for searchable text redaction
 - **Scanned PDFs**: OCR-based text detection (requires additional dependencies)
@@ -234,7 +234,7 @@ The tool provides multiple verification approaches:
 - **Encrypted PDFs**: Supported if password is available
 - **Form PDFs**: Form fields are flattened and removed during sanitization
 
-## 🔄 Processing Flow
+## Processing Flow
 
 1. **Analysis**: Determine PDF type (text-based vs. scanned)
 2. **Detection**: Find target content using text search, regex, or OCR
@@ -243,7 +243,7 @@ The tool provides multiple verification approaches:
 5. **Verification**: Check output to ensure redaction was successful
 6. **Reporting**: Generate detailed reports of actions taken
 
-## 🤝 Contributing
+## Contributing
 
 This tool is designed to be secure and reliable. When contributing:
 
@@ -252,7 +252,7 @@ This tool is designed to be secure and reliable. When contributing:
 3. Update documentation for new features
 4. Consider edge cases and error handling
 
-## 📜 License
+## License
 
 This project is provided as-is for educational and security purposes. Users are responsible for compliance with applicable laws and regulations regarding document redaction and privacy.
 
