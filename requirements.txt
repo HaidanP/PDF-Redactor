@@ -1,0 +1,9 @@
+# Core PDF processing dependencies
+PyMuPDF>=1.23.0
+pikepdf>=8.0.0
+click>=8.0.0
+
+# Optional OCR dependencies (for scanned PDFs)
+# opencv-python>=4.8.0
+# pytesseract>=0.3.10
+# Pillow>=10.0.0
