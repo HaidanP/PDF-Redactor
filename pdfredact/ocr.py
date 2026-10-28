@@ -2,17 +2,31 @@
 OCR Module - Handle scanned PDFs with text detection
 """
 
+from __future__ import annotations
+
 import fitz  # PyMuPDF
 from typing import List, Dict, Optional, Tuple
 import tempfile
 import os
 
+# numpy and cv2 are checked independently: numpy is effectively a baseline
+# dependency (pulled in transitively by fitz/pymupdf), while cv2 is a true
+# optional OCR-only dependency. Keeping them in separate try/except blocks
+# means the absence of cv2 never leaves `np` unbound.
+try:
+    import numpy as np
+    NUMPY_AVAILABLE = True
+except ImportError:
+    NUMPY_AVAILABLE = False
+
 try:
     import cv2
-    import numpy as np
-    OPENCV_AVAILABLE = True
+    CV2_AVAILABLE = True
 except ImportError:
-    OPENCV_AVAILABLE = False
+    CV2_AVAILABLE = False
+
+# OpenCV-based preprocessing needs both libraries together.
+OPENCV_AVAILABLE = CV2_AVAILABLE and NUMPY_AVAILABLE
 
 try:
     import pytesseract
@@ -39,13 +53,16 @@ def _check_dependencies() -> Tuple[bool, List[str]]:
         Tuple of (all_available, missing_dependencies)
     """
     missing = []
-    
-    if not OPENCV_AVAILABLE:
+
+    if not CV2_AVAILABLE:
         missing.append("opencv-python")
-    
+
+    if not NUMPY_AVAILABLE:
+        missing.append("numpy")
+
     if not TESSERACT_AVAILABLE:
         missing.append("pytesseract and Pillow")
-    
+
     return len(missing) == 0, missing
 
 
